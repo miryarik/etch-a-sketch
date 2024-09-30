@@ -1,0 +1,28 @@
+body {
+    text-align: center;
+    background-color: #ebebf0;
+}
+
+h1 {
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #1c1c1e;
+    margin: 30px auto;
+}
+
+.grid-container {
+    margin: 30px auto;
+    margin-top: 52px;
+    max-width: 75%;
+}
+
+.flex-row {
+    margin: auto 5%;
+    display: flex;
+    justify-content: center;
+}
+
+.grid-item {
+    padding: 2%;
+    flex: 1 1 1;
+    border
+}

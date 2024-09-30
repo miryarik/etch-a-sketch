@@ -6,12 +6,12 @@ body {
 h1 {
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
     color: #1c1c1e;
-    margin: 30px auto;
+    margin: auto;
+    margin-top: 30px;
 }
 
 .grid-container {
-    margin: 30px auto;
-    margin-top: 52px;
+    margin: 20px auto;
     max-width: 75%;
 }
 

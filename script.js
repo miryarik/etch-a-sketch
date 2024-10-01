@@ -14,19 +14,22 @@ const createGrid = (gridSize) => {
     // wrt grid-container square dimensions
     let boxSize = 100 / gridSize;
 
-    for (let i = 0; i < numBoxes; i++) {
+    for (let i = 1; i <= numBoxes; i++) {
 
         let box = document.createElement("div");
         box.classList.add("box");
         box.style.flexBasis = `${boxSize}%`;
         gridContainer.appendChild(box);
-    }
+        
+        styleBorders(box, gridSize, i);
 
+    }
+    
     addListenerToGrid();
 };
 
 
-function getrandomColor() {
+function getrandomColor () {
     // function to generate a random color
 
     // generate a random value for each color channel
@@ -40,7 +43,7 @@ function getrandomColor() {
 }
 
 
-function addListenerToGrid() {
+function addListenerToGrid () {
     // get all grid-items (boxes in grid)
     const boxes = document.querySelectorAll(".box");
     
@@ -50,6 +53,41 @@ function addListenerToGrid() {
             box.style.backgroundColor = getrandomColor();
         });
     });
+}
+
+function styleBorders (box, gridSize, i) {
+
+    // smoothen grid corners
+    const numBoxes = gridSize ** 2;
+    const borderStyle = "1px solid #007aff"
+    const cornerRadius = "16px";
+            
+    if (i == 1)
+        box.style.borderTopLeftRadius = cornerRadius;
+
+    if (i == gridSize)
+        box.style.borderTopRightRadius = cornerRadius;
+
+    if (i == numBoxes)
+        box.style.borderBottomRightRadius = cornerRadius;
+
+    if (i == (numBoxes - gridSize + 1))
+        box.style.borderBottomLeftRadius = cornerRadius;
+
+
+    // make edge borders solid
+    if (i >= 1 && i <= gridSize)
+        box.style.borderTop = borderStyle;
+    
+    if (i % gridSize == 0)
+        box.style.borderRight = borderStyle;
+
+    if (i <= numBoxes && i >= (numBoxes - gridSize + 1))
+        box.style.borderBottom = borderStyle;
+
+    if (i % gridSize == 1)
+        box.style.borderLeft = borderStyle;
+
 }
 
 // create default grid

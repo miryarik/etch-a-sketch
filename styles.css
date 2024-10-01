@@ -3,8 +3,10 @@
 }
 
 body {
+    background-color: #1a1a1a;
     text-align: center;
 }
+
 
 .main {
     display: flex;
@@ -29,12 +31,10 @@ body {
 }
 
 
-h1, h2, h3, h4, h5, h6 {
-    font-family: sans-serif;
-}
-
 h1 {
-    color: #1c1c1e;
+    font-family: 'fortune cookies', sans-serif;
+    font-size: 50px;
+    color: #afd6ff;
     margin: auto;
     margin-top: 30px;
 }
@@ -43,8 +43,39 @@ h3 {
     margin-bottom: 0;
 }
 
-.controls-right,
 .controls-left {
-    margin: 30px auto;
+    align-self: baseline ;
+    color: #006adb;
+    margin: 30px;
     text-align: center;
+}
+
+button {
+    color: #ffffff;
+    background-color: #006adb;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 32px;
+    margin: 20px 8px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+#grid-size-input {
+    width: 60px;
+    height: 36px;
+    font-size: 18px;
+    font-weight: 600;
+    margin-right: 8px;
+    background-color: #dcdcdc;
+    border-radius: 8px;
+}
+
+#color-input {
+    padding: 0;
+    width: 36px;
+    height: 36px;
+    border: 2px solid #afd6ff;
+    border-radius: 18px;
+    vertical-align:-65%;
 }

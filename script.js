@@ -50,7 +50,8 @@ function addListenerToGrid () {
     // each box changes color when mouse enters it
     boxes.forEach(box => {
         box.addEventListener("mouseenter", () => {
-            box.style.backgroundColor = getrandomColor();
+            
+            box.style.backgroundColor = setColor();
         });
     });
 }
@@ -90,24 +91,55 @@ function styleBorders (box, gridSize, i) {
 
 }
 
+
+// allow choosing color
+const colorInput = document.querySelector("#color-input");
+var isRandomColor = true;
+
+function setColor() {
+    // function to return color value
+    // if the random color button is clicked return random color
+    // else return input color
+
+    if (isRandomColor)
+        return getrandomColor();
+
+    else {
+        return colorInput.value;
+    }
+}
+
+// random colors button should toggle isRandomColor
+// and change button color on toggle
+const randColorBtn = document.querySelector("#rand-color-btn");
+
+function toggleBtnColor() {
+    isRandomColor = !isRandomColor;
+
+    if (isRandomColor)
+        randColorBtn.style.backgroundColor = "#006adb";
+    else
+        randColorBtn.style.backgroundColor = "#56779b";
+}
+
+randColorBtn.addEventListener('click', (event) => {
+    toggleBtnColor();
+})
+
 // create default grid
 createGrid(16);
 
 
 // get the slider for grid size
-const sizeSlider = document.querySelector("#grid-size-slider");
-// get the header on it used as label
-const sliderLabel = document.querySelector(".grid-size-label");
+const sizeInput = document.querySelector("#grid-size-input");
+
 
 // set default size as 16
-// show this on label as well
-sizeSlider.value = 16;
-sliderLabel.innerText = "Grid Size: 16";
+sizeInput.value = 16;
 
 // whenever the slider moves
-sizeSlider.addEventListener("input", (event) => {
-    sizeSlider.value = event.target.value
-    sliderLabel.innerText = `Grid Size: ${sizeSlider.value}`;
+sizeInput.addEventListener("input", (event) => {
+    sizeInput.value = event.target.value
 });
 
 
@@ -116,5 +148,5 @@ const newGridBtn = document.querySelector("#new-grid-btn");
 
 // button click makes a new grid with given size
 newGridBtn.addEventListener("click", () => {
-    createGrid(sizeSlider.value);
+    createGrid(sizeInput.value);
 } )

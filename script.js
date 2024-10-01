@@ -1,40 +1,30 @@
+// get grid container
 gridContainer = document.querySelector(".grid-container");
 
+const createGrid = (gridSize) => {
+    // function to create grid
 
-function createGrid(size) {
-    // function to create grid of given size
-    // make size number of rows
-    // add row number and flex-row class to each row
-    // append each row to the grid container
+    // erase prev grid
+    gridContainer.innerHTML = "";
 
-    let tempDiv = document.createElement("div");
+    // create total number of boxes
+    let numBoxes = gridSize * gridSize;
 
-    for (let i = 0; i < size; i++) {
-        let divRow = createDivRow(size);
-        divRow.classList.add(`row-${i}`);
-        divRow.classList.add("flex-row");
-        tempDiv.appendChild(divRow);
+    // initial size of each box
+    // wrt grid-container square dimensions
+    let boxSize = 100 / gridSize;
+
+    for (let i = 0; i < numBoxes; i++) {
+
+        let box = document.createElement("div");
+        box.classList.add("box");
+        box.style.flexBasis = `${boxSize}%`;
+        gridContainer.appendChild(box);
     }
 
-    gridContainer.innerHTML = tempDiv.innerHTML;
     addListenerToGrid();
-}
+};
 
-function createDivRow(size) {
-    // function to make a div as a row with 16 inner divs
-    // each of the inner divs has a column number and a grid-item class
-    
-    let rowDiv = document.createElement("div");
-
-    for (let i = 0; i < size; i++) {
-        let div = document.createElement("div");
-        div.classList.add(`col-${i}`);
-        div.classList.add("grid-item");
-        rowDiv.appendChild(div);
-    }
-
-    return rowDiv;
-}
 
 function getrandomColor() {
     // function to generate a random color
@@ -49,21 +39,22 @@ function getrandomColor() {
     return `#${red}${green}${blue}`;
 }
 
+
 function addListenerToGrid() {
     // get all grid-items (boxes in grid)
-    const gridItems = document.querySelectorAll(".grid-item");
+    const boxes = document.querySelectorAll(".box");
     
     // each box changes color when mouse enters it
-    gridItems.forEach(box => {
+    boxes.forEach(box => {
         box.addEventListener("mouseenter", () => {
             box.style.backgroundColor = getrandomColor();
         });
     });
 }
 
-
 // create default grid
 createGrid(16);
+
 
 // get the slider for grid size
 const sizeSlider = document.querySelector("#grid-size-slider");
